@@ -1,4 +1,4 @@
-# AdventOfCode
+# Advent Of Code 2015
 
 The Advent of Code is a list of 25 puzzles created by @topaz for the 2015 year.
 
