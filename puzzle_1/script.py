@@ -8,6 +8,7 @@ def OpenFile(file_name):
     f = open(file_name, 'r')
     return f.read()
 
+# O(n) worst case
 def FindFloor(file_name):
     input_txt = OpenFile(file_name)
     floor_num = 0
@@ -20,11 +21,12 @@ def FindFloor(file_name):
 
     return floor_num
     
-print FindFloor('input.txt')
+print FindFloor('input.txt') # Answer: 280
 
 ######################## PART 2 #####################
 # Find out how many moves it takes to get to the target floor
 
+# O(n) worst case
 def NumMovesToFloor(file_name, floor_target):
     input_txt = OpenFile(file_name)
     floor_num = 0
@@ -38,4 +40,6 @@ def NumMovesToFloor(file_name, floor_target):
         if floor_num == floor_target:
             return i + 1
 
-print NumMovesToFloor('input.txt', -1)
+    return -1
+
+print NumMovesToFloor('input.txt', -1) # Answer: 1797
