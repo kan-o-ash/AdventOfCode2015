@@ -27,16 +27,23 @@ int VisitHouse(char c, unordered_map<string, int> &m, int *x, int *y) {
 
 int HousesVisited (string input) {
     unordered_map<string, int> m;
-    int x = 0, y = 0;
+    int x1 = 0, y1 = 0;
+    int x2 = 0, y2 = 0;
+    int i = 1; // true is Santa, false is Robo-Santa
 
     m["0,0"] = 1;
 
     // for every char in input
     for (char & c : input) {
-        // cout << "test";
-        VisitHouse(c, m, &x, &y);
+        if (i) {
+            VisitHouse(c, m, &x1, &y1);
+            i -= 1;
+        }
+        else {
+            VisitHouse(c, m, &x2, &y2);
+            i += 1;
+        }
     }
-    
 
     return m.size();
 }
