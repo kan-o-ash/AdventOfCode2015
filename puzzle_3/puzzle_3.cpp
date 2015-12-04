@@ -6,30 +6,37 @@
 #include <unordered_map>
 using namespace std;
 
-int HousesVisited (string input) {
-    std::unordered_map<std::string, int> m;
-    int x = 0, y = 0;
+int VisitHouse(char c, unordered_map<string, int> &m, int *x, int *y) {
     string key;
 
-    m['0,0'] = 1;
+    if (c == '^')
+        *y += 1;
+    else if (c == 'v')
+        *y -= 1;
+    else if (c == '>')
+        *x += 1;
+    else if (c == '<')
+        *x -= 1;
+
+    key = to_string(*x) + "," + to_string(*y);
+    if (m[key])
+        m[key] += 1;
+    else
+        m[key] = 1;
+}
+
+int HousesVisited (string input) {
+    unordered_map<string, int> m;
+    int x = 0, y = 0;
+
+    m["0,0"] = 1;
 
     // for every char in input
     for (char & c : input) {
-        if (c == '^')
-            y += 1;
-        else if (c == 'v')
-            y -= 1;
-        else if (c == '>')
-            x += 1;
-        else if (c == '<')
-            x -= 1;
-
-        key = to_string(x) + "," + to_string(y);
-        if (m[key])
-            m[key] += 1;
-        else
-            m[key] = 1;
+        // cout << "test";
+        VisitHouse(c, m, &x, &y);
     }
+    
 
     return m.size();
 }
